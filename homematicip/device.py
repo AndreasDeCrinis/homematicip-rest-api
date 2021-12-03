@@ -438,6 +438,7 @@ class TemperatureHumiditySensorWithoutDisplay(Device):
         self.actualTemperature = 0
         self.humidity = 0
         self.vaporAmount = 0.0
+        self.setPointTemperature = 0
 
     def from_json(self, js):
         super().from_json(js)
@@ -449,6 +450,7 @@ class TemperatureHumiditySensorWithoutDisplay(Device):
             self.actualTemperature = c["actualTemperature"]
             self.humidity = c["humidity"]
             self.vaporAmount = c["vaporAmount"]
+            self.setPointTemperature = c["setPointTemperature"]
 
     def __str__(self):
         return "{} actualTemperature({}) humidity({}) vaporAmount({})".format(
