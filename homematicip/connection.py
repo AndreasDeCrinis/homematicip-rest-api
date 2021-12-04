@@ -50,6 +50,9 @@ class Connection(BaseConnection):
                     timeout=self._restCallTimout,
                 )
                 ret = result.json() if len(result.content) != 0 else ""
+                if result.status_code == 429:
+                    logger.error("Hit Throttling limit. Too many requests.")
+                    return {"errorCode": "TOOMANYREQUESTS"}
                 logger.debug(
                     "_restcall result: Errorcode=%s content(%s)",
                     result.status_code,
