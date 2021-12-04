@@ -289,8 +289,9 @@ class Home(HomeMaticIPObject):
             from self.devices, self.client, ... to have a fresh config instead of reparsing them
         """
         json_state = self.download_configuration()
-        if json_state["errorCode"] == "TOOMANYREQUESTS":
-            return
+        if("errorCode"in json_state):
+            if json_state["errorCode"] == "TOOMANYREQUESTS":
+                return
         return self.update_home(json_state, clearConfig)
 
     def update_home(self, json_state, clearConfig: bool = False):
